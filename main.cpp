@@ -1,536 +1,171 @@
-#include <iostream>
 #include "include/raylib.h"
+#include <stdlib.h>
+#include <time.h>
 
-bool TabellonePieno(int c1,int c2,int c3,int c4,int c5,int c6,int c7,int c8,int c9) {
-    return (c1!=0 && c2!=0 && c3!=0 &&
-            c4!=0 && c5!=0 && c6!=0 &&
-            c7!=0 && c8!=0 && c9!=0);
-}
+int main(void) {
 
-
-// ================= VITTORIA =================
-int vittoria(int c1,int c2,int c3,int c4,int c5,int c6,int c7,int c8,int c9)
-{
-    if (c1==c2 && c2==c3 && c1!=0) return c1;
-    if (c1==c4 && c4==c7 && c1!=0) return c1;
-    if (c1==c5 && c5==c9 && c1!=0) return c1;
-    if (c2==c5 && c5==c8 && c2!=0) return c2;
-    if (c3==c6 && c6==c9 && c3!=0) return c3;
-    if (c4==c5 && c5==c6 && c4!=0) return c4;
-    if (c7==c5 && c5==c3 && c7!=0) return c7;
-    if (c7==c8 && c8==c9 && c7!=0) return c7;
-    return 0;
-}
-
-// ================= COMPUTER =================
-void Computer(int& c1,int& c2,int& c3,int& c4,int& c5,
-              int& c6,int& c7,int& c8,int& c9,int simboloC)
-{
-    if(TabellonePieno(c1,c2,c3,c4,c5,c6,c7,c8,c9))return;
-    bool mossa = false;
-    while(!mossa)
-    {
-        int scelta = rand() % 9 + 1;
-        if(scelta==1 && c1==0) {
-            c1=simboloC;
-            mossa=true;
-        }
-        if(scelta==2 && c2==0) {
-            c2=simboloC;
-            mossa=true;
-        }
-        if(scelta==3 && c3==0) {
-            c3=simboloC;
-            mossa=true;
-        }
-        if(scelta==4 && c4==0) {
-            c4=simboloC;
-            mossa=true;
-        }
-        if(scelta==5 && c5==0) {
-            c5=simboloC;
-            mossa=true;
-        }
-        if(scelta==6 && c6==0) {
-            c6=simboloC;
-            mossa=true;
-        }
-        if(scelta==7 && c7==0) {
-            c7=simboloC;
-            mossa=true;
-        }
-        if(scelta==8 && c8==0) {
-            c8=simboloC;
-            mossa=true;
-        }
-        if(scelta==9 && c9==0) {
-            c9=simboloC;
-            mossa=true;
-        }
-    }
-}
-void ComputerHard (int& c1,int& c2,int& c3,int& c4,int& c5,
-              int& c6,int& c7,int& c8,int& c9,int simboloC, int simbolop) {
-    if(TabellonePieno(c1,c2,c3,c4,c5,c6,c7,c8,c9))return;
-    if(c1==simboloC && c2==simboloC && c3==0) {
-        c3=simboloC;
-    }
-    if(c1==simboloC && c3==simboloC && c2==0) {
-        c2=simboloC;
-    }
-    if(c2==simboloC && c3==simboloC && c1==0) {
-        c1=simboloC;
-    }
-
-    if(c4==simboloC && c5==simboloC && c6==0) {
-        c6=simboloC;
-    }
-    if(c4==simboloC && c6==simboloC && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simboloC && c6==simboloC && c4==0) {
-        c4=simboloC;
-    }
-
-    if(c7==simboloC && c8==simboloC && c9==0) {
-        c9=simboloC;
-    }
-    if(c7==simboloC && c9==simboloC && c8==0) {
-        c8=simboloC;
-    }
-    if(c8==simboloC && c9==simboloC && c7==0) {
-        c7=simboloC;
-    }
-
-    if(c1==simboloC && c4==simboloC && c7==0) {
-        c7=simboloC;
-    }
-    if(c1==simboloC && c7==simboloC && c4==0) {
-        c4=simboloC;
-    }
-    if(c4==simboloC && c7==simboloC && c1==0) {
-        c1=simboloC;
-    }
-
-    if(c2==simboloC && c5==simboloC && c8==0) {
-        c8=simboloC;
-    }
-    if(c2==simboloC && c8==simboloC && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simboloC && c8==simboloC && c2==0) {
-        c2=simboloC;
-    }
-
-    if(c3==simboloC && c6==simboloC && c9==0) {
-        c9=simboloC;
-    }
-    if(c3==simboloC && c9==simboloC && c6==0) {
-        c6=simboloC;
-    }
-    if(c6==simboloC && c9==simboloC && c3==0) {
-        c3=simboloC;
-    }
-
-    if(c1==simboloC && c5==simboloC && c9==0) {
-        c9=simboloC;
-    }
-    if(c1==simboloC && c9==simboloC && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simboloC && c9==simboloC && c1==0) {
-        c1=simboloC;
-    }
-
-    if(c3==simboloC && c5==simboloC && c7==0) {
-        c7=simboloC;
-    }
-    if(c3==simboloC && c7==simboloC && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simboloC && c7==simboloC && c3==0) {
-        c3=simboloC;
-    }
-
-    if(c1==simbolop && c2==simbolop && c3==0) {
-        c3=simboloC;
-    }
-    if(c1==simbolop && c3==simbolop && c2==0) {
-        c2=simboloC;
-    }
-    if(c2==simbolop && c3==simbolop && c1==0) {
-        c1=simboloC;
-    }
-
-    if(c4==simbolop && c5==simbolop && c6==0) {
-        c6=simboloC;
-    }
-    if(c4==simbolop && c6==simbolop && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simbolop && c6==simbolop && c4==0) {
-        c4=simboloC;
-    }
-
-    if(c7==simbolop && c8==simbolop && c9==0) {
-        c9=simboloC;
-    }
-    if(c7==simbolop && c9==simbolop && c8==0) {
-        c8=simboloC;
-    }
-    if(c8==simbolop && c9==simbolop && c7==0) {
-        c7=simboloC;
-    }
-
-    if(c1==simbolop && c4==simbolop && c7==0) {
-        c7=simboloC;
-    }
-    if(c1==simbolop && c7==simbolop && c4==0) {
-        c4=simboloC;
-    }
-    if(c4==simbolop && c7==simbolop && c1==0) {
-        c1=simboloC;
-    }
-
-    if(c2==simbolop && c5==simbolop && c8==0) {
-        c8=simboloC;
-    }
-    if(c2==simbolop && c8==simbolop && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simbolop && c8==simbolop && c2==0) {
-        c2=simboloC;
-    }
-
-    if(c3==simbolop && c6==simbolop && c9==0) {
-        c9=simboloC;
-    }
-    if(c3==simbolop && c9==simbolop && c6==0) {
-        c6=simboloC;
-    }
-    if(c6==simbolop && c9==simbolop && c3==0) {
-        c3=simboloC;
-    }
-
-    if(c1==simbolop && c5==simbolop && c9==0) {
-        c9=simboloC;
-    }
-    if(c1==simbolop && c9==simbolop && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simbolop && c9==simbolop && c1==0) {
-        c1=simboloC;
-    }
-
-    if(c3==simbolop && c5==simbolop && c7==0) {
-        c7=simboloC;
-    }
-    if(c3==simbolop && c7==simbolop && c5==0) {
-        c5=simboloC;
-    }
-    if(c5==simbolop && c7==simbolop && c3==0) {
-        c3=simboloC;
-    }
-
-    bool mossa = false;
-    while(!mossa)
-    {
-        int scelta = rand() % 9 + 1;
-        if(scelta==1 && c1==0) {
-            c1=simboloC;
-            mossa=true;
-        }
-        if(scelta==2 && c2==0) {
-            c2=simboloC;
-            mossa=true;
-        }
-        if(scelta==3 && c3==0) {
-            c3=simboloC;
-            mossa=true;
-        }
-        if(scelta==4 && c4==0) {
-            c4=simboloC;
-            mossa=true;
-        }
-        if(scelta==5 && c5==0) {
-            c5=simboloC;
-            mossa=true;
-        }
-        if(scelta==6 && c6==0) {
-            c6=simboloC;
-            mossa=true;
-        }
-        if(scelta==7 && c7==0) {
-            c7=simboloC;
-            mossa=true;
-        }
-        if(scelta==8 && c8==0) {
-            c8=simboloC;
-            mossa=true;
-        }
-        if(scelta==9 && c9==0) {
-            c9=simboloC;
-            mossa=true;
-        }
-    }
-}
-
-void DisegnaSimbolo(int valore,int col,int row,int inizioX,int inizioY,int cella)
-{
-    int cx=inizioX+col*cella+cella/2;
-    int cy=inizioY+row*cella+cella/2;
-
-    if(valore==1)
-        DrawCircleLines(cx,cy,cella/3,BLUE);
-    else if(valore==2)
-    {
-        int s=cella/2;
-        DrawRectangleLines(cx-s/2,cy-s/2,s,s,RED);
-    }
-}
-
-
-int main()
-{
-    const int screenWidth=800;
-    const int screenHeight=800;
-    const int cella=200;
-    const int campo=600;
-
-    int inizioX=(screenWidth-campo)/2;
-    int inizioY=(screenHeight-campo)/2;
-
-    InitWindow(screenWidth,screenHeight,"TRIS");
+    const int screenWidth = 600;
+    const int screenHeight = 600;
+    InitWindow(screenWidth, screenHeight, "Ping Pong");
     SetTargetFPS(60);
 
+	srand(time(NULL));
 
-    Rectangle contornogiochiamo={140,400,510,150};
-    Rectangle contornohard={500,300,200,150};
-    Rectangle contornoeasy={100,300,200,150};
+    int pagina = 1;
+    int hardMode = 0, modalitaInfinito = 0, puntiVittoria = 11, regolaBattuta = 0;
+    float ballX = 300, ballY = 300, ballSpeedX = 0, ballSpeedY = 0;
+    float playerX = 265, playerY = 500, playerW = 70, playerH = 15;
+    float cpuX = 265, cpuY = 85, cpuW = 70, cpuH = 15;
+    int scorePlayer = 0, scoreCPU = 0, turnoBattuta = 1, puntiTotaliSegnati = 0, turnoBattuta1 = rand () % 2 + 1;
+    float timerBattutaCpu = 0.0f;
+	if (turnoBattuta1 == 1) {
+        turnoBattuta = 1;
+    } else {
+        turnoBattuta = 2;
+    }
+
+    while (!WindowShouldClose()) {
+        // --- COLORI DEFAULT ---
+        Color colG = DARKBLUE;   Color txtG = BLACK;   // Pagina 1
+        Color colE = GREEN;      Color txtE = WHITE;   // Easy
+        Color colH = RED;        Color txtH = WHITE;   // Hard
+        Color colP = YELLOW;     Color txtP = WHITE;   // Punti e Battuta
+        Color colInf = PURPLE;   Color txtInf = WHITE; // Infinito
 
 
-    bool primapagina=true;
-    bool secondapagina=false;
-    bool terzapagina=false;
-    bool quartapagina=false;
-
-    bool easy=false,hard=false;
-    bool cerchio=false,quadrato=false;
-
-
-    int c1=0,c2=0,c3=0,c4=0,c5=0,c6=0,c7=0,c8=0,c9=0;
-    int simbolop=0,simboloc=0;
-    int turno=1;
-    int vincitore=0;
-
-    while(!WindowShouldClose())
-    {
-        // ===== COLORI =====
-        Color colGiochiamo=BLUE;
-        Color coloreTesto = BLACK;
-        Color colHard=RED;
-        Color colEasy=GREEN;
-        Color colCerchio=BLUE;
-        Color colQuadrato=BLUE;
-
-        // ===== TRANSIZIONI =====
-        if(primapagina){
-            if(CheckCollisionPointRec(GetMousePosition(),contornogiochiamo)){
-                colGiochiamo=DARKBLUE;
-                coloreTesto = WHITE;
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
-                    primapagina=false;
-                    secondapagina=true;
-                }
+        if (pagina == 1) {
+            Rectangle rectG = { 80, 300, 450, 150 };
+            if (CheckCollisionPointRec(GetMousePosition(), rectG)) {
+                colG = BLUE; txtG = WHITE; // Più chiaro, testo bianco
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) pagina = 2;
             }
         }
-        else if(secondapagina){
-            if(CheckCollisionPointRec(GetMousePosition(),contornohard)) {
-                colHard=MAROON;
-            if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
-                    hard=true;
-                    secondapagina=false;
-                    terzapagina=true;
-                }
+        else if (pagina == 2) {
+            Rectangle rectE = { 100, 220, 400, 100 };
+            Rectangle rectH = { 100, 350, 400, 100 };
+            if (CheckCollisionPointRec(GetMousePosition(), rectE)) {
+                colE = DARKGREEN; txtE = BLACK;
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { hardMode = 0; pagina = 3; }
             }
-            else if(CheckCollisionPointRec(GetMousePosition(),contornoeasy)){
-                colEasy=DARKGREEN;
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
-                    easy=true;
-                    secondapagina=false;
-                    terzapagina=true;
-                }
+            if (CheckCollisionPointRec(GetMousePosition(), rectH)) {
+                colH = MAROON; txtH = BLACK;
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { hardMode = 1; pagina = 3; }
             }
         }
-        else if(terzapagina){
-            if(CheckCollisionPointRec(GetMousePosition(),contornohard)){
-                colCerchio=DARKBLUE;
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
-                    cerchio=true;
-                    simbolop=1;
-                    simboloc=2;
-                    terzapagina=false;
-                    quartapagina=true;
-                }
-            }
-            else if(CheckCollisionPointRec(GetMousePosition(),contornoeasy)){
-                colQuadrato=DARKBLUE;
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
-                    quadrato=true;
-                    simbolop=2;
-                    simboloc=1;
-                    terzapagina=false;
-                    quartapagina=true;
-                }
+        else if (pagina == 3) {
+            Rectangle r7 = { 100, 120, 400, 60 }, r11 = { 100, 200, 400, 60 }, r21 = { 100, 280, 400, 60 }, rInf = { 100, 360, 400, 60 };
+            // Logica hover per i rettangoli gialli (punti) e viola (infinito)
+            if (CheckCollisionPointRec(GetMousePosition(), r7))  { if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { puntiVittoria = 7; pagina = 4; } }
+            if (CheckCollisionPointRec(GetMousePosition(), r11)) { if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { puntiVittoria = 11; pagina = 4; } }
+            if (CheckCollisionPointRec(GetMousePosition(), r21)) { if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { puntiVittoria = 21; pagina = 4; } }
+            if (CheckCollisionPointRec(GetMousePosition(), rInf)) {
+                colInf = Color{ 128, 0, 128, 255 }; txtInf = BLACK;
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { modalitaInfinito = 1; pagina = 4; }
             }
         }
+        else if (pagina == 4) {
+            // Qui i rettangoli gialli diventano più scuri (GOLD/ORANGE) e scritte nere al passaggio
+            if (CheckCollisionPointRec(GetMousePosition(), { 100, 150, 400, 70 })) { if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { regolaBattuta = 0; pagina = 5; } }
+            if (CheckCollisionPointRec(GetMousePosition(), { 100, 250, 400, 70 })) { if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { regolaBattuta = 1; pagina = 5; } }
+            if (CheckCollisionPointRec(GetMousePosition(), { 100, 350, 400, 70 })) { if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) { regolaBattuta = 2; pagina = 5; } }
+        }
+        else if (pagina == 5) {
 
-        if (easy) {
-            if(quartapagina && vincitore==0 && turno==1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
-                Vector2 m=GetMousePosition();
-                if(m.x>=inizioX && m.x<inizioX+campo && m.y>=inizioY && m.y<inizioY+campo) {
-                    int colonne=(m.x-inizioX)/cella;
-                    int righe=(m.y-inizioY)/cella;
+            playerX = GetMouseX() - playerW/2;
+            if (playerX < 150) playerX = 150; if (playerX > 450 - playerW) playerX = 450 - playerW;
+            playerY = GetMouseY() - playerH/2;
+            if (playerY < 310) playerY = 310; if (playerY > 540) playerY = 540;
 
-                    if(righe==0 && colonne==0 && c1==0) c1=simbolop;
-                    if(righe==0 && colonne==1 && c2==0) c2=simbolop;
-                    if(righe==0 && colonne==2 && c3==0) c3=simbolop;
-                    if(righe==1 && colonne==0 && c4==0) c4=simbolop;
-                    if(righe==1 && colonne==1 && c5==0) c5=simbolop;
-                    if(righe==1 && colonne==2 && c6==0) c6=simbolop;
-                    if(righe==2 && colonne==0 && c7==0) c7=simbolop;
-                    if(righe==2 && colonne==1 && c8==0) c8=simbolop;
-                    if(righe==2 && colonne==2 && c9==0) c9=simbolop;
-                    turno = 2;
-                }
+            float vCpu = (hardMode == 1) ? 5.2f : 3.5f;
+            if (ballX > cpuX + cpuW/2) cpuX += vCpu; else cpuX -= vCpu;
+            if (cpuX < 150) cpuX = 150; if (cpuX > 450 - cpuW) cpuX = 450 - cpuW;
+
+            if (ballSpeedY == 0.0f) {
+                if (turnoBattuta == 1) { if (IsKeyPressed(KEY_SPACE)) { ballSpeedY = -4.0f; ballSpeedX = (ballX > 300) ? -3.0f : 3.0f; } }
+                else { timerBattutaCpu += GetFrameTime(); if (timerBattutaCpu > 1.5f) { ballSpeedY = 4.0f; ballSpeedX = (ballX > 300) ? -3.0f : 3.0f; timerBattutaCpu = 0.0f; } }
             }
+            ballX += ballSpeedX; ballY += ballSpeedY;
+            if (ballX < 160 || ballX > 440) ballSpeedX *= -1;
 
-            if(quartapagina && vincitore==0 && turno==2)
-            {
-                Computer(c1,c2,c3,c4,c5,c6,c7,c8,c9,simboloc);
-                turno=1;
-            }
+            if (ballSpeedY > 0 && CheckCollisionCircleRec({ballX, ballY}, 10, {playerX, playerY, playerW, playerH})) { ballSpeedY *= -1.1f; ballY = playerY - 11; ballSpeedX += (ballX - (playerX + playerW/2)) / 7; }
+            if (ballSpeedY < 0 && CheckCollisionCircleRec({ballX, ballY}, 10, {cpuX, cpuY, cpuW, cpuH})) { ballSpeedY *= -1.1f; ballY = cpuY + cpuH + 11; ballSpeedX += (ballX - (cpuX + cpuW/2)) / 7; }
 
-            vincitore=vittoria(c1,c2,c3,c4,c5,c6,c7,c8,c9);
-        }else if (hard) {
-            if(quartapagina && vincitore==0 && turno==1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
-                Vector2 m=GetMousePosition();
-                if(m.x>=inizioX && m.x<inizioX+campo && m.y>=inizioY && m.y<inizioY+campo) {
-                    int colonne=(m.x-inizioX)/cella;
-                    int righe=(m.y-inizioY)/cella;
+            bool puntoFatto = false;
+            if (ballY < 50) { scorePlayer++; puntoFatto = true; }
+            else if (ballY > 550) { scoreCPU++; puntoFatto = true; }
 
-                    if(righe==0 && colonne==0 && c1==0) c1=simbolop;
-                    if(righe==0 && colonne==1 && c2==0) c2=simbolop;
-                    if(righe==0 && colonne==2 && c3==0) c3=simbolop;
-                    if(righe==1 && colonne==0 && c4==0) c4=simbolop;
-                    if(righe==1 && colonne==1 && c5==0) c5=simbolop;
-                    if(righe==1 && colonne==2 && c6==0) c6=simbolop;
-                    if(righe==2 && colonne==0 && c7==0) c7=simbolop;
-                    if(righe==2 && colonne==1 && c8==0) c8=simbolop;
-                    if(righe==2 && colonne==2 && c9==0) c9=simbolop;
-                    turno = 2;
-                }
-            }
-
-            if(quartapagina && vincitore==0 && turno==2){
-                ComputerHard(c1,c2,c3,c4,c5,c6,c7,c8,c9,simboloc, simbolop);
-                turno=1;
-            }
-            vincitore=vittoria(c1,c2,c3,c4,c5,c6,c7,c8,c9);
-            if(vincitore == 0 && TabellonePieno(c1,c2,c3,c4,c5,c6,c7,c8,c9)) {
-                vincitore = -1; // -1 indica pareggio
+            if (puntoFatto) {
+                ballX = 300; ballY = 300; ballSpeedX = 0; ballSpeedY = 0; timerBattutaCpu = 0.0f; puntiTotaliSegnati++;
+                if (regolaBattuta == 0) turnoBattuta = (ballY < 50) ? 2 : 1;
+                else if (regolaBattuta == 1) turnoBattuta = ((puntiTotaliSegnati / 2) % 2 == 0) ? 1 : 2;
+                else if (regolaBattuta == 2) turnoBattuta = ((puntiTotaliSegnati / 5) % 2 == 0) ? 1 : 2;
+                if (modalitaInfinito == 0 && (scorePlayer >= puntiVittoria || scoreCPU >= puntiVittoria)) { pagina = 1; scorePlayer = 0; scoreCPU = 0; puntiTotaliSegnati = 0; }
             }
         }
 
-        // ===== DISEGNO =====
+
         BeginDrawing();
         ClearBackground(BLACK);
 
-        if(primapagina)
-        {
-            DrawText("TRIS", 135, 70, 200, BLUE);
-            DrawRectangleRounded(contornogiochiamo, 0.2, 10, colGiochiamo);
-            DrawTriangle({ 180, 435 }, { 180, 515 }, { 240, 475 }, coloreTesto);
-            DrawText("GIOCHIAMO", 260, 445, 65, coloreTesto);
-            DrawText("Made by Baresi and Meloni", 500, 750, 20, BLUE);
+        if (pagina == 1) {
+            DrawText("PING PONG", 80, 70, 80, BLUE);
+            DrawRectangle(80, 300, 450, 150, colG);
+            DrawText("GIOCHIAMO", 170, 350, 60, txtG);
         }
-        else if(secondapagina)
-        {
-            DrawText("Scegli la difficolta",80,70,70,BLUE);
-            DrawRectangleRounded(contornohard,0.2,10,colHard);
-            DrawText("HARD",535,355,40,WHITE);
-            DrawRectangleRounded(contornoeasy,0.2,10,colEasy);
-            DrawText("EASY",135,355,40,WHITE);
+        else if (pagina == 2) {
+            DrawRectangle(100, 220, 400, 100, colE); DrawText("FACILE", 225, 255, 35, txtE);
+            DrawRectangle(100, 350, 400, 100, colH); DrawText("DIFFICILE", 205, 385, 35, txtH);
         }
-        else if(terzapagina)
-        {
-            DrawText("Scegli il simbolo",140,70,70,BLUE);
-            DrawRectangleRounded(contornohard,0.2,10,colCerchio);
-            DrawCircle(600,375,40,WHITE);
-            DrawRectangleRounded(contornoeasy,0.2,10,colQuadrato);
-            DrawRectangle(150,325,100,100,WHITE);
+        else if (pagina == 3) {
+
+            Color c7 = (CheckCollisionPointRec(GetMousePosition(), {100, 120, 400, 60})) ? GOLD : YELLOW;
+            Color t7 = (CheckCollisionPointRec(GetMousePosition(), {100, 120, 400, 60})) ? BLACK : WHITE;
+            DrawRectangle(100, 120, 400, 60, c7); DrawText("7 PUNTI", 230, 135, 30, t7);
+
+            Color c11 = (CheckCollisionPointRec(GetMousePosition(), {100, 200, 400, 60})) ? GOLD : YELLOW;
+            Color t11 = (CheckCollisionPointRec(GetMousePosition(), {100, 200, 400, 60})) ? BLACK : WHITE;
+            DrawRectangle(100, 200, 400, 60, c11); DrawText("11 PUNTI", 225, 215, 30, t11);
+
+            Color c21 = (CheckCollisionPointRec(GetMousePosition(), {100, 280, 400, 60})) ? GOLD : YELLOW;
+            Color t21 = (CheckCollisionPointRec(GetMousePosition(), {100, 280, 400, 60})) ? BLACK : WHITE;
+            DrawRectangle(100, 280, 400, 60, c21); DrawText("21 PUNTI", 225, 295, 30, t21);
+
+            DrawRectangle(100, 360, 400, 60, colInf); DrawText("INFINITO", 220, 375, 30, txtInf);
         }
-        else if(quartapagina)
-        {
-            if(vincitore!=0)
-            {
-                if(vincitore==simbolop) {
-                    DrawText("HAI VINTO!",220,40,60,GREEN);
-                } else if (vincitore == simboloc){
-                    DrawText("HAI PERSO!",220,40,60,RED);
-                } else if (vincitore == -1){
-                    DrawText("PAREGGIO!",220,40,60,ORANGE);
-                }
+        else if (pagina == 4) {
+            DrawText("REGOLA BATTUTA", 140, 50, 35, WHITE);
 
-                // --- Pulsante RESET ---
-                Rectangle btnReset = {300, 700, 200, 60}; // posizionato sotto il testo
-                Color colReset = DARKGRAY;
+            Color r0 = (CheckCollisionPointRec(GetMousePosition(), {100, 150, 400, 70})) ? GOLD : YELLOW;
+            Color rt0 = (CheckCollisionPointRec(GetMousePosition(), {100, 150, 400, 70})) ? BLACK : WHITE;
+            DrawRectangle(100, 150, 400, 70, r0); DrawText("CHI SUBISCE BATTE", 160, 175, 25, rt0);
 
-                if(CheckCollisionPointRec(GetMousePosition(), btnReset))
-                {
-                    colReset = GRAY;
-                    if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-                    {
-                        // --- Reset delle celle ---
-                        c1 = c2 = c3 = c4 = c5 = c6 = c7 = c8 = c9 = 0;
-                        turno = 1;
-                        vincitore = 0;
+            Color r1 = (CheckCollisionPointRec(GetMousePosition(), {100, 250, 400, 70})) ? GOLD : YELLOW;
+            Color rt1 = (CheckCollisionPointRec(GetMousePosition(), {100, 250, 400, 70})) ? BLACK : WHITE;
+            DrawRectangle(100, 250, 400, 70, r1); DrawText("OGNI 2 PUNTI", 200, 275, 25, rt1);
 
-                        primapagina = false;
-                        secondapagina = true;
-                        terzapagina = quartapagina = false;
-                        easy = hard = false;
-                        cerchio = quadrato = false;
-                        simbolop = simboloc = 0;
-                    }
-                }
-
-                DrawRectangleRec(btnReset, colReset);
-                DrawText("RESET", btnReset.x + 50, btnReset.y + 15, 30, WHITE);
-            }
-
-            // --- Griglia ---
-            for(int i=0;i<=3;i++)
-            {
-                DrawLine(inizioX+i*cella,inizioY,inizioX+i*cella,inizioY+campo,GRAY);
-                DrawLine(inizioX,inizioY+i*cella,inizioX+campo,inizioY+i*cella,GRAY);
-            }
-
-            // --- Simboli ---
-            DisegnaSimbolo(c1,0,0,inizioX,inizioY,cella);
-            DisegnaSimbolo(c2,1,0,inizioX,inizioY,cella);
-            DisegnaSimbolo(c3,2,0,inizioX,inizioY,cella);
-            DisegnaSimbolo(c4,0,1,inizioX,inizioY,cella);
-            DisegnaSimbolo(c5,1,1,inizioX,inizioY,cella);
-            DisegnaSimbolo(c6,2,1,inizioX,inizioY,cella);
-            DisegnaSimbolo(c7,0,2,inizioX,inizioY,cella);
-            DisegnaSimbolo(c8,1,2,inizioX,inizioY,cella);
-            DisegnaSimbolo(c9,2,2,inizioX,inizioY,cella);
+            Color r2 = (CheckCollisionPointRec(GetMousePosition(), {100, 350, 400, 70})) ? GOLD : YELLOW;
+            Color rt2 = (CheckCollisionPointRec(GetMousePosition(), {100, 350, 400, 70})) ? BLACK : WHITE;
+            DrawRectangle(100, 350, 400, 70, r2); DrawText("OGNI 5 PUNTI", 200, 375, 25, rt2);
         }
+        else if (pagina == 5) {
+            DrawRectangle(150, 50, 300, 500, Color{ 15, 15, 45, 255 });
+            DrawRectangleLines(150, 50, 300, 500, WHITE); DrawLine(150, 300, 450, 300, GRAY);
+            DrawCircle((int)ballX, (int)ballY, 10, YELLOW);
+            DrawRectangle((int)playerX, (int)playerY, (int)playerW, (int)playerH, GREEN);
+            DrawRectangle((int)cpuX, (int)cpuY, (int)cpuW, (int)cpuH, RED);
+            DrawText(TextFormat("%i", scoreCPU), 50, 270, 60, RED);
+            DrawText(TextFormat("%i", scorePlayer), 510, 270, 60, GREEN);
+			if (ballSpeedY == 0.0f) {
+    if (turnoBattuta == 1) {
+        DrawText("PREMI SPAZIO PER BATTERE", 155, 320, 20, YELLOW);
+    } else {
+        DrawText("L'AVVERSARIO STA PER BATTERE...", 140, 320, 20, YELLOW);
+    }
+}
 
+        }
         EndDrawing();
     }
-
     CloseWindow();
     return 0;
 }
